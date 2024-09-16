@@ -1,4 +1,4 @@
-const sqrt = require("../sqrt");
+const sqrt = require("../src/sqrt");
 
 describe("sqrt function tests", () => {
   test("calculates the square root of 2, 3, and 16", () => {
