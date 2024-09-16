@@ -1,4 +1,4 @@
-name: Node.js CI with Yarn
+name: Node.js CI with Yarn and Coveralls
 
 on:
   push:
@@ -33,3 +33,8 @@ jobs:
 
       - name: Run coverage with Yarn
         run: yarn run coverage
+
+      - name: Upload coverage to Coveralls
+        run: cat ./coverage/lcov.info | yarn coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
