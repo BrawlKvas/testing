@@ -1,0 +1,14 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/BrawlKvas/testing.git",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
