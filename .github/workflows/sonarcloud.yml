@@ -1,0 +1,43 @@
+name: SonarCloud Scan
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install dependencies using Yarn
+        run: yarn install
+
+      - name: Run tests
+        run: yarn test
+
+      - name: Run coverage
+        run: yarn run coverage
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=BrawlKvas_testing
+            -Dsonar.organization=brawlkvas
+            -Dsonar.sources=./src
+            -Dsonar.tests=./__tests__
+            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
